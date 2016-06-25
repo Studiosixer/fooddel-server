@@ -4,37 +4,37 @@ import "fmt"
 
 var currentId int
 
-var todos Todos
+var drivers Drivers
 
 // Give us some seed data
 func init() {
-    RepoCreateTodo(Todo{Name: "Write presentation"})
-    RepoCreateTodo(Todo{Name: "Host meetup"})
+	RepoCreateDriver(Driver{Name: "John the fast"})
+	RepoCreateDriver(Driver{Name: "Joe the slow"})
 }
 
-func RepoFindTodo(id int) Todo {
-    for _, t := range todos {
-        if t.Id == id {
-            return t
-        }
-    }
-    // return empty Todo if not found
-    return Todo{}
+func RepoFindDriver(id int) Driver {
+	for _, t := range drivers {
+		if t.Id == id {
+			return t
+		}
+	}
+	// return empty Driver if not found
+	return Driver{}
 }
 
-func RepoCreateTodo(t Todo) Todo {
-    currentId += 1
-    t.Id = currentId
-    todos = append(todos, t)
-    return t
+func RepoCreateDriver(t Driver) Driver {
+	currentId += 1
+	t.Id = currentId
+	drivers = append(drivers, t)
+	return t
 }
 
-func RepoDestroyTodo(id int) error {
-    for i, t := range todos {
-        if t.Id == id {
-            todos = append(todos[:i], todos[i+1:]...)
-            return nil
-        }
-    }
-    return fmt.Errorf("Could not find Todo with id of %d to delete", id)
+func RepoDestroyDriver(id int) error {
+	for i, t := range drivers {
+		if t.Id == id {
+			drivers = append(drivers[:i], drivers[i+1:]...)
+			return nil
+		}
+	}
+	return fmt.Errorf("Could not find Driver with id of %d to delete", id)
 }
